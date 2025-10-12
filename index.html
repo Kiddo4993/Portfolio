@@ -8,7 +8,7 @@
  
     html { scroll-behavior: smooth; }
 
- 
+    
     * { box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
@@ -175,18 +175,46 @@
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-
+.overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: none; /* hidden by default */
+      justify-content: center;
+      align-items: center;
+    }
+    .popup {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+  .close-btn {
+      margin-top: 1rem;
+      background: red;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+    }
     :target { scroll-margin-top: 72px; }
   </style>
+  <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
-  <header id="home">
+  <header>
     <h1>Dylan Duan</h1>
   </header>
 
   <nav>
     <div class="nav-container">
-      <a class="logo" href="Dylan's Portfolio.html">Dylan</a>
+      <a class="logo" href="index.html">Dylan</a>
 
       
       <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
@@ -196,7 +224,7 @@
       </button>
 
       <div id="nav-links" class="nav-links" role="menu">
-        <a href="Dylan's Portfolio.html">Home</a>
+        <a href="index.html">Home</a>
         <a href="AboutMe.html">About Me</a>
         <a href="Projects.html">Projects</a>
         <a href="Contacts.html">Contact</a>
@@ -236,6 +264,13 @@
       <p>GitHub: <a href="https://github.com/Kiddo4993">github.com/Kiddo4993</a></p>
     </div>
   </section>
+  <div class="overlay" id="popupOverlay">
+    <div class="popup">
+      <h2>Dylan's Website</h2>
+      <p>Click on the icons on the navagation bar for more information.</p>
+      <button class="close-btn" onclick="closePopup()">Close</button>
+    </div>
+  </div>
   <footer>
     <p>
       <button class="btn" id="dark-toggle">Toggle Dark/Light Mode</button>
@@ -248,6 +283,17 @@
       const menuToggle = document.getElementById('menu-toggle');
       const navLinks = document.getElementById('nav-links');
       const darkBtn = document.getElementById('dark-toggle');
+
+      window.onload = function() {
+      setTimeout(function() {
+        document.getElementById("popupOverlay").style.display = "flex";
+      }, 3000);
+    };
+
+    // Close popup
+    function closePopup() {
+      document.getElementById("popupOverlay").style.display = "none";
+    }
 
       // if (menuToggle && navLinks) {
       //   menuToggle.addEventListener('click', () => {
