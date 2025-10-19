@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Dylan's Portfolio - Home Page</title>
   <style>
- 
     html { scroll-behavior: smooth; }
-
-    
     * { box-sizing: border-box; }
+
     body {
       font-family: Arial, sans-serif;
       margin: 0;
@@ -32,7 +30,6 @@
     header h1 { margin: 0; font-size: 2.2rem; }
     header p { margin: .5rem 0 0; color: #bbb; }
 
-
     nav {
       background: #333;
       color: white;
@@ -54,7 +51,6 @@
       font-weight: 700;
       letter-spacing: 0.4px;
     }
-
     .nav-links {
       display: flex;
       gap: 1rem;
@@ -70,65 +66,6 @@
     }
     .nav-links a:hover { background: rgba(255,255,255,0.06); color: #ff9800; }
 
-
-    /* .menu-toggle {
-      display: none; 
-      width: 42px;
-      height: 34px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      padding: 4px;
-      align-items: center;
-      justify-content: center;
-    }
-    .menu-toggle:focus { outline: 2px solid #ff9800; outline-offset: 2px; }
-    .menu-toggle .bar {
-      display: block;
-      width: 26px;
-      height: 3px;
-      margin: 4px 0;
-      background: white;
-      transition: transform .25s ease, opacity .25s ease;
-    }
-
-    .menu-toggle.open .bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .menu-toggle.open .bar:nth-child(2) { opacity: 0; }
-    .menu-toggle.open .bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-
-  
-    @media (max-width: 768px) {
-      .menu-toggle { display: flex; }
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 56px;
-        right: 1rem;
-        width: 220px;
-        background: #333;
-        flex-direction: column;
-        padding: 12px;
-        border-radius: 8px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-      }
-      .nav-links.active { display: flex; }
-      .nav-links a { text-align: right; padding: 10px 8px; margin: 0; }
-    }
-
-
-    .hero {
-      max-width: 1100px;
-      margin: 1rem auto;
-      padding: 0 1rem;
-    }
-    .hero img.center {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-    } */ 
-
-  
     section {
       max-width: 1100px;
       margin: 1.5rem auto;
@@ -140,13 +77,13 @@
       margin: 1rem 0;
       border-radius: 10px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+      transition: background 0.3s, box-shadow 0.3s;
     }
     body.dark-mode .card {
       background: #121212;
       box-shadow: 0 6px 18px rgba(0,0,0,0.4);
     }
 
-   
     .btn {
       background-color: grey;
       color: white;
@@ -168,44 +105,80 @@
       margin-top: 2rem;
     }
     .center {
-  display: block;         
-  margin: 0 auto;        
-  width: 75%;             
-  height: auto;           
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-}
-.overlay {
+      display: block;         
+      margin: 0 auto;        
+      width: 75%;             
+      height: auto;           
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+    }
+
+    .overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.6);
-      display: none; /* hidden by default */
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
       justify-content: center;
       align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      z-index: 100;
     }
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
     .popup {
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 400px;
+      background: #fff;
+      color: #000;
+      padding: 2rem 2.5rem;
+      border-radius: 18px;
       text-align: center;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(255,255,255,0.2);
+      max-width: 400px;
+      width: 90%;
+      transform: translateY(-30px);
+      opacity: 0;
+      animation: popupFadeIn 0.6s ease forwards;
     }
-  .close-btn {
-      margin-top: 1rem;
-      background: red;
-      color: white;
+
+    @keyframes popupFadeIn {
+      from { opacity: 0; transform: translateY(-30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .popup h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+      letter-spacing: 0.5px;
+    }
+
+    .popup p {
+      color: #333;
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .close-btn {
+      background-color: #000;
+      color: #fff;
       border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
+      padding: 0.6rem 1.5rem;
+      border-radius: 25px;
       cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s, transform 0.2s;
     }
+    .close-btn:hover {
+      background-color: #333;
+      transform: scale(1.05);
+    }
+
     :target { scroll-margin-top: 72px; }
   </style>
-  <link rel="stylesheet" type="text/css" href="styles.css" />
 </head>
 <body>
   <header>
@@ -215,14 +188,6 @@
   <nav>
     <div class="nav-container">
       <a class="logo" href="index.html">Dylan</a>
-
-      
-      <button id="menu-toggle" class="menu-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </button>
-
       <div id="nav-links" class="nav-links" role="menu">
         <a href="index.html">Home</a>
         <a href="AboutMe.html">About Me</a>
@@ -233,18 +198,15 @@
   </nav>
 
   <div class="hero">
-
     <img class="center" src="https://images.pexels.com/photos/1146642/pexels-photo-1146642.jpeg?cs=srgb&dl=pexels-eberhardgross-1146642.jpg&fm=jpg" alt="Landscape photo">
   </div>
-
 
   <section>
     <div class="card">
       <h2>About Me</h2>
-      <p>I'm Dylan </p>
+      <p>I'm Dylan.</p>
     </div>
   </section>
-
 
   <section>
     <div class="card">
@@ -260,17 +222,19 @@
   <section>
     <div class="card">
       <h2>Contact</h2>
-      <p>Email: <a href="dylanduancanada@gmail.com">dylanduancanada@gmail.com</a></p>
+      <p>Email: <a href="mailto:dylanduancanada@gmail.com">dylanduancanada@gmail.com</a></p>
       <p>GitHub: <a href="https://github.com/Kiddo4993">github.com/Kiddo4993</a></p>
     </div>
   </section>
+
   <div class="overlay" id="popupOverlay">
     <div class="popup">
       <h2>Dylan's Website</h2>
-      <p>Click on the icons on the navagation bar for more information.</p>
-      <button class="close-btn" onclick="closePopup()">Close</button>
+      <p>Click on the icons on the navigation bar for more information.</p>
+      <button class="close-btn" id="closePopup">Close</button>
     </div>
   </div>
+
   <footer>
     <p>
       <button class="btn" id="dark-toggle">Toggle Dark/Light Mode</button>
@@ -280,50 +244,22 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const menuToggle = document.getElementById('menu-toggle');
-      const navLinks = document.getElementById('nav-links');
+      const overlay = document.getElementById('popupOverlay');
+      const closeBtn = document.getElementById('closePopup');
       const darkBtn = document.getElementById('dark-toggle');
 
-      window.onload = function() {
-      setTimeout(function() {
-        document.getElementById("popupOverlay").style.display = "flex";
+      setTimeout(() => {
+        overlay.classList.add('active');
       }, 3000);
-    };
 
-    // Close popup
-    function closePopup() {
-      document.getElementById("popupOverlay").style.display = "none";
-    }
+      closeBtn.addEventListener('click', () => {
+        overlay.style.opacity = '0';
+        setTimeout(() => {
+          overlay.classList.remove('active');
+          overlay.style.opacity = '';
+        }, 400);
+      });
 
-      // if (menuToggle && navLinks) {
-      //   menuToggle.addEventListener('click', () => {
-      //     const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-      //     menuToggle.setAttribute('aria-expanded', String(!expanded));
-      //     menuToggle.classList.toggle('open');
-      //     navLinks.classList.toggle('active');
-      //   });
-
-      //   navLinks.querySelectorAll('a').forEach(a => {
-      //     a.addEventListener('click', () => {
-      //       if (navLinks.classList.contains('active')) {
-      //         navLinks.classList.remove('active');
-      //         menuToggle.classList.remove('open');
-      //         menuToggle.setAttribute('aria-expanded', 'false');
-      //       }
-      //     });
-      //   });
-
-
-      // //   document.addEventListener('keydown', (e) => {
-      // //     if (e.key === 'Escape' && navLinks.classList.contains('active')) {
-      // //       navLinks.classList.remove('active');
-      // //       menuToggle.classList.remove('open');
-      // //       menuToggle.setAttribute('aria-expanded', 'false');
-      // //     }
-      // //   });
-      // // }
-
-  
       if (darkBtn) {
         darkBtn.addEventListener('click', () => {
           document.body.classList.toggle('dark-mode');
